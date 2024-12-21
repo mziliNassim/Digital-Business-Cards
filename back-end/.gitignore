@@ -1,0 +1,10 @@
+
+/node_modules
+/dist
+/coverage
+.vscode
+/dist
+
+.env
+
+test.js
