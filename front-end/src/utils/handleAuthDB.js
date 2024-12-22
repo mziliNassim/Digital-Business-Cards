@@ -65,3 +65,12 @@ export const resendVerificationCodeDB = async (email) => {
     return err.response.data;
   }
 };
+
+export const forgotPasswordDB = async (email) => {
+  try {
+    const res = await axios.post(`${AUTH_API}/forgot-password`, { email });
+    return res.data;
+  } catch (err) {
+    return err.response.data;
+  }
+};

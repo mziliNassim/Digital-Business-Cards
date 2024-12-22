@@ -92,6 +92,10 @@ const App = () => {
                   <Route path="logout" element={<Logout />} />
                   <Route path="verify-email" element={<VerifyEmail />} />
                   <Route path="forgot-password" element={<ForgotPassword />} />
+                  <Route
+                    path="reset-password/:token"
+                    element={<ForgotPassword />}
+                  />
                   <Route path="*" element={<NotFound />} />
                 </Route>
 
