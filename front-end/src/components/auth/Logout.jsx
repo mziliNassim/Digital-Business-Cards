@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearUser } from "../../features/userSlice";
-import { logoutAuth } from "../../utils/handleAuth";
+import { logoutAuth } from "../../utils/handleAuthDB";
 
 const Logout = () => {
   const dispatch = useDispatch();

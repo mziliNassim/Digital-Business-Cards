@@ -5,8 +5,12 @@ import Alert from "../Alert.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import authlogin from "../../img/auth/authlogin.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { loginAuth } from "../../utils/handleAuth.js";
+import { loginAuth } from "../../utils/handleAuthDB.js";
 import { setUser } from "../../features/userSlice.js";
+import { loginAuthUI } from "../../utils/handleAuthUI.js";
+
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 const Login = () => {
   const [hidPassword, setHidPassword] = useState(true);
@@ -56,17 +60,13 @@ const Login = () => {
       .then((res) => {
         if (res.user) {
           dispatch(setUser(res.user));
-          setAlert({ message: res.message, state: res.state });
           window.location = "/"; // <==> navigate("/");
-        } else
-          setAlert({
-            message: "Invalid username or password",
-            state: "warning",
-          });
+        }
+        setAlert({ message: res.message, state: res.state });
       })
       .catch((err) => {
         setAlert({
-          message: err.message,
+          message: err.message || "An unexpected error occurred.",
           state: "danger",
         });
       })

@@ -94,8 +94,28 @@ const PASSWORD_RESET_REQUEST_TEMPLATE = `
 </html>
 `;
 
+const WELCOME_EMAIL_TEMPLATE = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Welcome to Digital Business Cards</title>
+</head>
+<body>
+    <h1>Welcome {{name}}!</h1>
+    <p>Thank you for joining {{company_name}}. We're excited to have you on board!</p>
+    <p>Start creating your digital business card today and enhance your professional networking.</p>
+    <p>If you have any questions, feel free to reach out to our support team.</p>
+    <br>
+    <p>Best regards,</p>
+    <p>The {{company_name}} Team</p>
+</body>
+</html>
+`;
+
 module.exports = {
   VERIFICATION_EMAIL_TEMPLATE,
   PASSWORD_RESET_SUCCESS_TEMPLATE,
   PASSWORD_RESET_REQUEST_TEMPLATE,
+  WELCOME_EMAIL_TEMPLATE,
 };

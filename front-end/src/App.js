@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
-import { checkAuth } from "./utils/handleAuth.js";
+import { checkAuth } from "./utils/handleAuthDB.js";
 import { setUser } from "./features/userSlice.js";
 import { getStoredTheme } from "./features/themeSlice.js";
 
@@ -35,8 +35,6 @@ import Platforms from "./components/platforms/Platforms.jsx";
 import Company from "./components/company/Company.jsx";
 
 import Additional from "./components/additional/Additional.jsx";
-
-import Test from "./components/Test.jsx";
 
 const App = () => {
   const [loading, setLoading] = useState(true);

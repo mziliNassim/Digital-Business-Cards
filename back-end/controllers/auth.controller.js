@@ -127,24 +127,19 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
-    if (!user) {
+    if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(400).json({
         state: "warning",
         message: "Invalid email or password",
         user: null,
       });
     }
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({
-        state: "warning",
-        message: "Invalid email or password",
-        user: null,
-      });
-    }
+
     generateTokenAndSetCookie(res, user._id);
+
     user.lastLogin = new Date();
     await user.save();
+
     return res.status(200).json({
       state: "success",
       message: "Logged in successfully",

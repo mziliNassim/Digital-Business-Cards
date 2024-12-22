@@ -7,7 +7,7 @@ import authregister from "../../img/auth/authregister.svg";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { login, setUser } from "../../features/userSlice.js";
-import { registerAuth } from "../../utils/handleAuth.js";
+import { registerAuth } from "../../utils/handleAuthDB.js";
 
 const Register = () => {
   const [hidPassword, setHidPassword] = useState(true);
@@ -59,15 +59,13 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const register = async () => {
-    registerAuth(registerData)
+    await registerAuth(registerData)
       .then((res) => {
         if (res.user) {
           dispatch(setUser(res.user));
-          setAlert({ message: res.message, state: res.state });
           window.location = "/"; // <==> navigate("/");
-        } else {
-          setAlert({ message: "Server Error!", state: "warning" });
         }
+        setAlert({ message: res.message, state: res.state });
       })
       .catch((err) => {
         setAlert({

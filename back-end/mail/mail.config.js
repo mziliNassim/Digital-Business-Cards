@@ -1,13 +1,32 @@
-const { MailtrapClient } = require("mailtrap");
+// mail.config.js
+const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-const mailtrapClient = new MailtrapClient({
-  token: process.env.MAILTRAP_TOKEN,
+// Create a transporter using Mailtrap SMTP credentials
+const transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: "mzilinassim@gmail.com", // Your email
+    pass: "lqck bjlp onng tjmt", // Your email password (or app-specific password)
+  },
 });
 
+// Default sender configuration
 const sender = {
-  email: "hello@demomailtrap.com",
-  name: "Test user",
+  email: "dbc@gmail.com",
+  name: "Digital Business Cards",
 };
 
-module.exports = { sender, mailtrapClient };
+// Verify transporter configuration
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("Transporter verification failed:", error);
+  } else {
+    console.log("Server is ready to take our messages");
+  }
+});
+
+module.exports = {
+  sender,
+  transporter,
+};
