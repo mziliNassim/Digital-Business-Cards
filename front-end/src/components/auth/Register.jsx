@@ -63,7 +63,8 @@ const Register = () => {
       .then((res) => {
         if (res.user) {
           dispatch(setUser(res.user));
-          window.location = "/"; // <==> navigate("/");
+          navigate("/auth/verify-email");
+          // window.location = "/";
         }
         setAlert({ message: res.message, state: res.state });
       })

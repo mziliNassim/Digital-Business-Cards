@@ -35,6 +35,7 @@ import Platforms from "./components/platforms/Platforms.jsx";
 import Company from "./components/company/Company.jsx";
 
 import Additional from "./components/additional/Additional.jsx";
+import VerifyEmail from "./components/auth/VerifyEmail.jsx";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -80,6 +81,7 @@ const App = () => {
                   <Route path="login" element={<Login />} />
                   <Route path="register" element={<Register />} />
                   <Route path="logout" element={<Logout />} />
+                  <Route path="verify-email" element={<VerifyEmail />} />
                   <Route path="*" element={<NotFound />} />
                 </Route>
 
