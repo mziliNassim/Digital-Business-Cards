@@ -9,6 +9,7 @@ const {
   forgotPassword,
   resetPassword,
   chekAuth,
+  resentVerfyEmailCode,
 } = require("../controllers/auth.controller");
 
 const verifyToken = require("../middleware/verifyToken");
@@ -20,6 +21,8 @@ router.post("/login", login);
 router.post("/logout", logout);
 
 router.post("/verify-email", verfyEmail);
+router.post("/resent-verfy-Code", resentVerfyEmailCode);
+
 router.post("/forgot-password", forgotPassword);
 router.post("/reset-password/:token", resetPassword);
 

@@ -57,30 +57,30 @@ const NavBar = () => {
 
           {/* user && toggle btn */}
           <div className="flex relative items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            {/* user avatar */}
-            {user.user ? (
+            {/* user */}
+            {user?.user ? (
               <>
-                <div class="relative font-[sans-serif] w-max mx-auto">
+                <div className="relative font-[sans-serif] w-max mx-auto">
                   <button
                     onClick={() => setToggleDropdown(!toggleDropdown)}
                     type="button"
                     id="dropdownToggle"
-                    class="px-4 py-2 flex items-center rounded-full text-[#333] dark:text-gray-200 text-sm border border-gray-300 dark:border-gray-700 outline-none hover:bg-gray-100 dark:hover:bg-gray-800"
+                    className="px-4 py-2 flex items-center rounded-full text-[#333] dark:text-gray-200 text-sm border border-gray-300 dark:border-gray-700 outline-none hover:bg-gray-100 dark:hover:bg-gray-800"
                   >
                     <img
                       src="https://readymadeui.com/profile_6.webp"
-                      class="w-7 h-7 mr-3 rounded-full shrink-0"
+                      className="w-7 h-7 mr-3 rounded-full shrink-0"
                     ></img>
                     {user.user.username}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="w-3 fill-gray-400 inline ml-3"
+                      className="w-3 fill-gray-400 inline ml-3"
                       viewBox="0 0 24 24"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M11.99997 18.1669a2.38 2.38 0 0 1-1.68266-.69733l-9.52-9.52a2.38 2.38 0 1 1 3.36532-3.36532l7.83734 7.83734 7.83734-7.83734a2.38 2.38 0 1 1 3.36532 3.36532l-9.52 9.52a2.38 2.38 0 0 1-1.68266.69734z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                         data-original="#000000"
                       />
                     </svg>
@@ -88,52 +88,66 @@ const NavBar = () => {
 
                   <ul
                     id="dropdownMenu"
-                    class={`${
+                    className={`${
                       toggleDropdown ? "absolute" : "hidden"
-                    } block shadow-lg bg-white py-2 z-[1000] min-w-full w-max rounded-lg max-h-96 overflow-auto dark:bg-gray-800`}
+                    } right-0 shadow-lg bg-white py-2 z-[1000] min-w-full w-max rounded-lg max-h-96 overflow-auto dark:bg-gray-800`}
                   >
-                    {/* profile */}
+                    {/* Email */}
                     <Link
                       to="/user/profile"
-                      class="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
+                      className="py-2.5 px-5 flex items-center text-[#333] dark:text-gray-200 text-sm cursor-pointer"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        class="w-4 h-4 mr-3"
-                        viewBox="0 0 512 512"
-                      >
-                        <path
-                          d="M337.711 241.3a16 16 0 0 0-11.461 3.988c-18.739 16.561-43.688 25.682-70.25 25.682s-51.511-9.121-70.25-25.683a16.007 16.007 0 0 0-11.461-3.988c-78.926 4.274-140.752 63.672-140.752 135.224v107.152C33.537 499.293 46.9 512 63.332 512h385.336c16.429 0 29.8-12.707 29.8-28.325V376.523c-.005-71.552-61.831-130.95-140.757-135.223zM446.463 480H65.537V376.523c0-52.739 45.359-96.888 104.351-102.8C193.75 292.63 224.055 302.97 256 302.97s62.25-10.34 86.112-29.245c58.992 5.91 104.351 50.059 104.351 102.8zM256 234.375a117.188 117.188 0 1 0-117.188-117.187A117.32 117.32 0 0 0 256 234.375zM256 32a85.188 85.188 0 1 1-85.188 85.188A85.284 85.284 0 0 1 256 32z"
-                          data-original="#000000"
-                        ></path>
-                      </svg>
-                      View profile
+                      {user.user.email}
                     </Link>
 
-                    {/* Dashboard */}
-                    <Link
-                      to="/user/dashboard"
-                      class="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        class="w-4 h-4 mr-3"
-                        viewBox="0 0 512 512"
-                      >
-                        <path
-                          d="M197.332 170.668h-160C16.746 170.668 0 153.922 0 133.332v-96C0 16.746 16.746 0 37.332 0h160c20.59 0 37.336 16.746 37.336 37.332v96c0 20.59-16.746 37.336-37.336 37.336zM37.332 32A5.336 5.336 0 0 0 32 37.332v96a5.337 5.337 0 0 0 5.332 5.336h160a5.338 5.338 0 0 0 5.336-5.336v-96A5.337 5.337 0 0 0 197.332 32zm160 480h-160C16.746 512 0 495.254 0 474.668v-224c0-20.59 16.746-37.336 37.332-37.336h160c20.59 0 37.336 16.746 37.336 37.336v224c0 20.586-16.746 37.332-37.336 37.332zm-160-266.668A5.337 5.337 0 0 0 32 250.668v224A5.336 5.336 0 0 0 37.332 480h160a5.337 5.337 0 0 0 5.336-5.332v-224a5.338 5.338 0 0 0-5.336-5.336zM474.668 512h-160c-20.59 0-37.336-16.746-37.336-37.332v-96c0-20.59 16.746-37.336 37.336-37.336h160c20.586 0 37.332 16.746 37.332 37.336v96C512 495.254 495.254 512 474.668 512zm-160-138.668a5.338 5.338 0 0 0-5.336 5.336v96a5.337 5.337 0 0 0 5.336 5.332h160a5.336 5.336 0 0 0 5.332-5.332v-96a5.337 5.337 0 0 0-5.332-5.336zm160-74.664h-160c-20.59 0-37.336-16.746-37.336-37.336v-224C277.332 16.746 294.078 0 314.668 0h160C495.254 0 512 16.746 512 37.332v224c0 20.59-16.746 37.336-37.332 37.336zM314.668 32a5.337 5.337 0 0 0-5.336 5.332v224a5.338 5.338 0 0 0 5.336 5.336h160a5.337 5.337 0 0 0 5.332-5.336v-224A5.336 5.336 0 0 0 474.668 32zm0 0"
-                          data-original="#000000"
-                        ></path>
-                      </svg>
-                      Dashboard
-                    </Link>
+                    <hr className="w-5/6 mx-auto opacity-45" />
+
+                    {user.user.isVerified && (
+                      <>
+                        {/* profile */}
+                        <Link
+                          to="/user/profile"
+                          className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            className="w-4 h-4 mr-3"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              d="M337.711 241.3a16 16 0 0 0-11.461 3.988c-18.739 16.561-43.688 25.682-70.25 25.682s-51.511-9.121-70.25-25.683a16.007 16.007 0 0 0-11.461-3.988c-78.926 4.274-140.752 63.672-140.752 135.224v107.152C33.537 499.293 46.9 512 63.332 512h385.336c16.429 0 29.8-12.707 29.8-28.325V376.523c-.005-71.552-61.831-130.95-140.757-135.223zM446.463 480H65.537V376.523c0-52.739 45.359-96.888 104.351-102.8C193.75 292.63 224.055 302.97 256 302.97s62.25-10.34 86.112-29.245c58.992 5.91 104.351 50.059 104.351 102.8zM256 234.375a117.188 117.188 0 1 0-117.188-117.187A117.32 117.32 0 0 0 256 234.375zM256 32a85.188 85.188 0 1 1-85.188 85.188A85.284 85.284 0 0 1 256 32z"
+                              data-original="#000000"
+                            ></path>
+                          </svg>
+                          View profile
+                        </Link>
+
+                        {/* Dashboard */}
+                        <Link
+                          to="/user/dashboard"
+                          className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            className="w-4 h-4 mr-3"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              d="M197.332 170.668h-160C16.746 170.668 0 153.922 0 133.332v-96C0 16.746 16.746 0 37.332 0h160c20.59 0 37.336 16.746 37.336 37.332v96c0 20.59-16.746 37.336-37.336 37.336zM37.332 32A5.336 5.336 0 0 0 32 37.332v96a5.337 5.337 0 0 0 5.332 5.336h160a5.338 5.338 0 0 0 5.336-5.336v-96A5.337 5.337 0 0 0 197.332 32zm160 480h-160C16.746 512 0 495.254 0 474.668v-224c0-20.59 16.746-37.336 37.332-37.336h160c20.59 0 37.336 16.746 37.336 37.336v224c0 20.586-16.746 37.332-37.336 37.332zm-160-266.668A5.337 5.337 0 0 0 32 250.668v224A5.336 5.336 0 0 0 37.332 480h160a5.337 5.337 0 0 0 5.336-5.332v-224a5.338 5.338 0 0 0-5.336-5.336zM474.668 512h-160c-20.59 0-37.336-16.746-37.336-37.332v-96c0-20.59 16.746-37.336 37.336-37.336h160c20.586 0 37.332 16.746 37.332 37.336v96C512 495.254 495.254 512 474.668 512zm-160-138.668a5.338 5.338 0 0 0-5.336 5.336v96a5.337 5.337 0 0 0 5.336 5.332h160a5.336 5.336 0 0 0 5.332-5.332v-96a5.337 5.337 0 0 0-5.332-5.336zm160-74.664h-160c-20.59 0-37.336-16.746-37.336-37.336v-224C277.332 16.746 294.078 0 314.668 0h160C495.254 0 512 16.746 512 37.332v224c0 20.59-16.746 37.336-37.332 37.336zM314.668 32a5.337 5.337 0 0 0-5.336 5.332v224a5.338 5.338 0 0 0 5.336 5.336h160a5.337 5.337 0 0 0 5.332-5.336v-224A5.336 5.336 0 0 0 474.668 32zm0 0"
+                              data-original="#000000"
+                            ></path>
+                          </svg>
+                          Dashboard
+                        </Link>
+                      </>
+                    )}
 
                     {/* theme */}
                     <Link
                       onClick={themeToggle}
-                      class="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
+                      className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
                     >
                       {theme === "dark" ? (
                         <svg
@@ -141,7 +155,7 @@ const NavBar = () => {
                           width="16"
                           height="16"
                           fill="currentColor"
-                          class="bi bi-brightness-high w-4 h-4 mr-3"
+                          className="bi bi-brightness-high w-4 h-4 mr-3"
                         >
                           <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708" />
                         </svg>
@@ -151,7 +165,7 @@ const NavBar = () => {
                           width="16"
                           height="16"
                           fill="currentColor"
-                          class="bi bi-moon w-4 h-4 mr-3"
+                          className="bi bi-moon w-4 h-4 mr-3"
                         >
                           <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286" />
                         </svg>
@@ -159,15 +173,17 @@ const NavBar = () => {
                       <span>{theme === "dark" ? "Light" : "Dark"} mode</span>
                     </Link>
 
+                    <hr className="w-5/6 mx-auto opacity-45" />
+
                     {/* logout */}
                     <Link
                       to="/auth/logout"
-                      class="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
+                      className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
-                        class="w-4 h-4 mr-3"
+                        className="w-4 h-4 mr-3"
                         viewBox="0 0 6.35 6.35"
                       >
                         <path

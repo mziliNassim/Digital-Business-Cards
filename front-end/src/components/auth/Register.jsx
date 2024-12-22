@@ -38,8 +38,11 @@ const Register = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    user.user && navigate("/");
-  }, [user]);
+    if (user.user) {
+      if (user.user.isVerified) navigate("/");
+      else navigate("/auth/verify-email");
+    }
+  });
 
   // =================
 
@@ -64,7 +67,6 @@ const Register = () => {
         if (res.user) {
           dispatch(setUser(res.user));
           navigate("/auth/verify-email");
-          // window.location = "/";
         }
         setAlert({ message: res.message, state: res.state });
       })

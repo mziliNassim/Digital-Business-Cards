@@ -47,3 +47,21 @@ export const logoutAuth = async () => {
     return { user: null, message: err.message, state: "danger" };
   }
 };
+
+export const verifyEmailDB = async (code) => {
+  try {
+    const res = await axios.post(`${AUTH_API}/verify-email`, { code });
+    return res.data;
+  } catch (err) {
+    return err.response.data;
+  }
+};
+
+export const resendVerificationCodeDB = async (email) => {
+  try {
+    const res = await axios.post(`${AUTH_API}/resent-verfy-Code`, { email });
+    return res.data;
+  } catch (err) {
+    return err.response.data;
+  }
+};

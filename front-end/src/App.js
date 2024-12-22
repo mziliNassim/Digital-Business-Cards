@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 import { checkAuth } from "./utils/handleAuthDB.js";
 import { setUser } from "./features/userSlice.js";
@@ -36,28 +36,37 @@ import Company from "./components/company/Company.jsx";
 
 import Additional from "./components/additional/Additional.jsx";
 import VerifyEmail from "./components/auth/VerifyEmail.jsx";
+import ForgotPassword from "./components/auth/ForgotPassword.jsx";
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
-  setTimeout(() => {
-    setLoading(false);
-  }, 1000);
+  const [loading, setLoading] = useState(false);
 
   // =============
   const theme = useSelector((state) => state.theme);
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getStoredTheme());
+    setLoading(true);
     checkAuth()
       .then((res) => {
-        if (res.user) dispatch(setUser(res));
+        if (res.user) {
+          dispatch(setUser(res));
+          !res.user.isVerified && navigate("/auth/verify-email");
+        }
       })
-      .catch((err) => console.log(err));
-  }, [dispatch]);
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+  }, []);
 
   useEffect(() => {
-    dispatch(getStoredTheme());
-  }, []);
+    if (user.user) {
+      !user.user.isVerified && navigate("/auth/verify-email");
+    }
+  }, [user, location]);
 
   return (
     <>
@@ -82,6 +91,7 @@ const App = () => {
                   <Route path="register" element={<Register />} />
                   <Route path="logout" element={<Logout />} />
                   <Route path="verify-email" element={<VerifyEmail />} />
+                  <Route path="forgot-password" element={<ForgotPassword />} />
                   <Route path="*" element={<NotFound />} />
                 </Route>
 

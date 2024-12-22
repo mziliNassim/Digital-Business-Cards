@@ -123,6 +123,50 @@ const verfyEmail = async (req, res) => {
   }
 };
 
+const resentVerfyEmailCode = async (req, res) => {
+  const email = req.body.email;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        state: "warning",
+        message: "User not found",
+        user: null,
+      });
+    }
+    if (user.isVerified) {
+      return res.status(400).json({
+        state: "warning",
+        message: "Email is already verified",
+        user: null,
+      });
+    }
+    // Generate new verification token
+    const verificationToken = Math.floor(
+      100000 + Math.random() * 900000
+    ).toString();
+
+    // Update user with new token and expiration
+    user.verificationToken = verificationToken;
+    user.verificationTokenExpiresAt = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
+    await user.save();
+
+    // Send new verification email
+    await sendVerificationEmail(user.email, verificationToken);
+    return res.status(200).json({
+      state: "success",
+      message: "Verification code resent successfully",
+      user: { ...user._doc, password: undefined },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      state: "danger",
+      message: error.message,
+      user: null,
+    });
+  }
+};
+
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -236,6 +280,7 @@ module.exports = {
   chekAuth,
   register,
   verfyEmail,
+  resentVerfyEmailCode,
   login,
   logout,
   forgotPassword,

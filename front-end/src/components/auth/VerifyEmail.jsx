@@ -1,17 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
-// import { useAuthStore } from "../store/authStore";
-// import toast from "react-hot-toast";
+import {
+  resendVerificationCodeDB,
+  verifyEmailDB,
+} from "../../utils/handleAuthDB";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../features/userSlice";
 
 const VerifyEmail = () => {
+  const [alert, setAlert] = useState({ message: "", state: "" });
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const inputRefs = useRef([]);
-  const navigate = useNavigate();
-
-  const [alert, setAlert] = useState({ message: "", state: "" });
   const [loading, setLoading] = useState(false);
-  const [verifyEmail, setVerifyEmail] = useState();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [resendCode, setResendCode] = useState({
+    timing: true,
+    message: "Resend verification code?",
+  });
 
   const handleChange = (index, value) => {
     const newCode = [...code];
@@ -42,28 +49,71 @@ const VerifyEmail = () => {
     }
   };
 
+  // =================
+  const user = useSelector((state) => state.user);
+  useEffect(() => {
+    if (!user.user) navigate("/");
+    else user.user?.isVerified && navigate("/");
+  });
+
+  // =================
+
+  const resendVerificationCode = async () => {
+    setResendCode({
+      timing: false,
+      message: "Resend verification code?",
+    });
+    await resendVerificationCodeDB(user.user.email)
+      .then((res) => {
+        setResendCode({
+          timing: false,
+          message: "Verification code send to youe email!",
+        });
+      })
+      .catch((err) => {
+        setAlert({ message: err.message, state: "danger" });
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setResendCode({ timing: true, message: "Resend verification code?" });
+        }, 3 * 60000); // 3 min
+      });
+  };
+
+  // =================
+
   const verifyEmailUI = async (verificationCode) => {
-    try {
-      // await verifyEmail(verificationCode);
-      // navigate("/");
-      //     toast.success("Email verified successfully");
-    } catch (error) {
-      console.log(error);
-    }
+    await verifyEmailDB(verificationCode)
+      .then((res) => {
+        if (res.user) {
+          dispatch(setUser(res.user));
+          window.location = "/";
+        }
+        setAlert({
+          message: res.message,
+          state: res.state,
+        });
+      })
+      .catch((err) => {
+        console.log("verifyEmailUI ~ err:", err);
+        setAlert({ message: err.message, state: "danger" });
+      })
+      .finally(() => setLoading(false));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     const verificationCode = code.join("");
-    verifyEmailUI(verifyEmail);
+    verifyEmailUI(verificationCode);
   };
 
-  // // Auto submit when all fields are filled
-  // useEffect(() => {
-  //   if (code.every((digit) => digit !== "")) {
-  //     handleSubmit(new Event("submit"));
-  //   }
-  // }, [code]);
+  // Auto submit when all fields are filled
+  useEffect(() => {
+    if (code.every((digit) => digit !== "")) {
+      handleSubmit(new Event("submit"));
+    }
+  }, [code]);
 
   return (
     <section className="bg-white overflow-y-hidden dark:bg-gray-900">
@@ -77,6 +127,66 @@ const VerifyEmail = () => {
           <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-[#f35a57] to-[#f35a51] text-transparent bg-clip-text">
             Verify Your Email
           </h2>
+
+          {alert.message !== "" && (
+            <div
+              id="alert-1"
+              class={`flex items-center justify-between p-4 mb-4  rounded-lg ${
+                alert.state === "success"
+                  ? "text-green-800 dark:text-green-400 bg-green-50 "
+                  : alert.state === "warning"
+                  ? "text-yellow-800 dark:text-yellow-400 bg-yellow-50 "
+                  : "text-red-800 dark:text-red-400 bg-red-50 "
+              }  dark:bg-gray-800 `}
+              role="alert"
+            >
+              <svg
+                className="flex-shrink-0 w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+              </svg>
+
+              <span className="sr-only">Info</span>
+
+              <div className="ms-3 text-sm font-medium">{alert.message}</div>
+
+              <button
+                onClick={() => setAlert({ message: "", state: "" })}
+                type="button"
+                class={`ms-auto transition-all rounded-lg focus:ring-2 dark:bg-gray-800 dark:hover:bg-gray-700  p-1.5 inline-flex items-center justify-center h-8 w-8 ${
+                  alert.state === "success"
+                    ? "focus:ring-green-400 dark:text-green-400 bg-green-100 text-green-500"
+                    : alert.state === "warning"
+                    ? "focus:ring-yellow-400 dark:text-yellow-400 bg-yellow-100 text-yellow-500"
+                    : "focus:ring-red-400 dark:text-red-400 bg-red-100 text-red-500"
+                }  `}
+                data-dismiss-target="#alert-1"
+                aria-label="Close"
+              >
+                <span className="sr-only">Close</span>
+                <svg
+                  className="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+              </button>
+            </div>
+          )}
+
           <p className="text-center text-gray-700 dark:text-gray-300 mb-6">
             Enter the 6-digit code sent to your email address.
           </p>
@@ -96,9 +206,36 @@ const VerifyEmail = () => {
                 />
               ))}
             </div>
-            {alert.message && (
-              <p className="text-red-500 font-semibold mt-2">{alert.message}</p>
-            )}
+
+            {/* resendCodeTime */}
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="text-sm">
+                <button
+                  type="button"
+                  disabled={!resendCode.timing}
+                  onClick={resendVerificationCode}
+                  className={
+                    resendCode.timing
+                      ? "text-blue-600 hover:underline font-semibold"
+                      : "text-gray-600 font-semibold"
+                  }
+                >
+                  {resendCode.message}
+                </button>
+              </div>
+
+              <div className="text-sm">
+                <button
+                  type="button"
+                  disabled={!resendCode.timing}
+                  onClick={resendVerificationCode}
+                  className="text-blue-600 hover:underline font-semibold"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

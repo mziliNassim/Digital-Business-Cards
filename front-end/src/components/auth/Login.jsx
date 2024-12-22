@@ -7,7 +7,6 @@ import authlogin from "../../img/auth/authlogin.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAuth } from "../../utils/handleAuthDB.js";
 import { setUser } from "../../features/userSlice.js";
-import { loginAuthUI } from "../../utils/handleAuthUI.js";
 
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -28,8 +27,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user.user) navigate("/");
-  }, [user]);
+    if (user.user) {
+      if (user.user.isVerified) navigate("/");
+      else navigate("/auth/verify-email");
+    }
+  });
 
   // ======================
   const ref = useRef(null);
@@ -226,7 +228,7 @@ const Login = () => {
                   </div>
                 </div>
 
-                {/* Remember */}
+                {/* Remember && Forgot password */}
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center">
                     <input
@@ -246,12 +248,12 @@ const Login = () => {
                   </div>
 
                   <div className="text-sm">
-                    <a
-                      href="jajvascript:void(0);"
+                    <Link
+                      to="/auth/forgot-password"
                       className="text-blue-600 hover:underline font-semibold"
                     >
                       Forgot your password?
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
