@@ -74,3 +74,14 @@ export const forgotPasswordDB = async (email) => {
     return err.response.data;
   }
 };
+
+export const resetPasswordDB = async ({ token, password }) => {
+  try {
+    const res = await axios.post(`${AUTH_API}/reset-password/${token}`, {
+      password,
+    });
+    return res.data;
+  } catch (err) {
+    return err.response.data;
+  }
+};

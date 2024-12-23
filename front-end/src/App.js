@@ -37,6 +37,7 @@ import Company from "./components/company/Company.jsx";
 import Additional from "./components/additional/Additional.jsx";
 import VerifyEmail from "./components/auth/VerifyEmail.jsx";
 import ForgotPassword from "./components/auth/ForgotPassword.jsx";
+import ResetPassword from "./components/auth/ResetPassword.jsx";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -94,7 +95,7 @@ const App = () => {
                   <Route path="forgot-password" element={<ForgotPassword />} />
                   <Route
                     path="reset-password/:token"
-                    element={<ForgotPassword />}
+                    element={<ResetPassword />}
                   />
                   <Route path="*" element={<NotFound />} />
                 </Route>
