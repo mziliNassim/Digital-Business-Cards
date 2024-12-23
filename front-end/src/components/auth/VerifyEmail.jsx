@@ -52,8 +52,9 @@ const VerifyEmail = () => {
   // =================
   const user = useSelector((state) => state.user);
   useEffect(() => {
-    if (!user.user) navigate("/");
-    else user.user?.isVerified && navigate("/");
+    if (user.user) {
+      if (user.user.isVerified) window.location = "/";
+    } else window.location = "/auth/login";
   });
 
   // =================

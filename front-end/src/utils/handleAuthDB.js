@@ -10,6 +10,12 @@ const defaultResponse = {
   state: "danger",
 };
 
+const options = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
 export const checkAuth = async () => {
   try {
     const res = await axios.get(`${AUTH_API}/check-auth`);
@@ -75,11 +81,15 @@ export const forgotPasswordDB = async (email) => {
   }
 };
 
-export const resetPasswordDB = async ({ token, password }) => {
+export const resetPasswordDB = async (token, password) => {
   try {
-    const res = await axios.post(`${AUTH_API}/reset-password/${token}`, {
-      password,
-    });
+    const res = await axios.post(
+      `${AUTH_API}/reset-password/${token}`,
+      {
+        password,
+      },
+      options
+    );
     return res.data;
   } catch (err) {
     return err.response.data;

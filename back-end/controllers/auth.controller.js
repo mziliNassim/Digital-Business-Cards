@@ -227,7 +227,7 @@ const forgotPassword = async (req, res) => {
     // send email
     await sendResetPasswordEmail(
       user.email,
-      `${process.env.CLIENT_URL}/reset-password/${resetToken}`
+      `${process.env.CLIENT_URL}/auth/reset-password/${resetToken}`
     );
     return res.status(200).json({
       state: "success",
@@ -254,7 +254,7 @@ const resetPassword = async (req, res) => {
     if (!user) {
       return res.status(400).json({
         state: "warning",
-        message: "Invalid or expired reset token",
+        message: "Invalid or expired reset link",
       });
     }
 

@@ -42,13 +42,14 @@ const Register = () => {
       if (user.user.isVerified) navigate("/");
       else navigate("/auth/verify-email");
     }
-  });
+  }, []);
 
   // =================
 
   const ref = useRef(null);
   const inView = useInView(ref);
   const mainControls = useAnimation();
+
   useEffect(() => {
     if (inView) {
       mainControls.start({ opacity: 1, y: 0 });
@@ -66,7 +67,7 @@ const Register = () => {
       .then((res) => {
         if (res.user) {
           dispatch(setUser(res.user));
-          navigate("/auth/verify-email");
+          window.location = "/auth/verify-email";
         }
         setAlert({ message: res.message, state: res.state });
       })

@@ -21,10 +21,11 @@ const ResetPassword = () => {
   const navigate = useNavigate();
 
   const resetPassword = async (e) => {
-    console.log("ResetPassword ~ token:", token, typeof token);
-    console.log("resetPassword ~ password:", password, typeof password);
     await resetPasswordDB(token, password)
       .then((res) => {
+        if (res.state === "success") {
+          navigate("/auth/login");
+        }
         setAlert({ message: res.message, state: res.state });
       })
       .catch((err) => {
