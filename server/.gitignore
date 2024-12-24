@@ -8,3 +8,5 @@
 .env
 
 test.js
+# Local Netlify folder
+.netlify

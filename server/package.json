@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "netlify dev",
+    "build": "netlify deploy",
+    "deploy": "netlify deploy --prod"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.2",
-    "nodemailer": "^6.9.16"
+    "nodemailer": "^6.9.16",
+    "serverless-http": "^3.2.0"
   }
 }
