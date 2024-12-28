@@ -37,4 +37,6 @@ app.get("*", (req, res) => {
 });
 
 // server listen
-module.exports.handler = serverless(app);
+// module.exports.handler = serverless(app);
+const PORT = process.env.PORT;
+app.listen(PORT, () => console.log("Server is running on port", PORT));

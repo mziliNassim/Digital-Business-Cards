@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { storeTheme, toggleTheme } from "../features/themeSlice";
 import { Link, NavLink } from "react-router-dom";
@@ -7,16 +7,36 @@ import { motion } from "motion/react";
 import appLogo from "../img/appLogo.png";
 
 const NavBar = () => {
-  const [toggleDropdown, setToggleDropdown] = useState(false);
-  const [navBar, setNavBar] = useState("bg-transparent");
-  const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme);
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const themeToggle = () => {
     dispatch(toggleTheme());
     dispatch(storeTheme(theme === "light" ? "dark" : "light"));
   };
+
+  // ===========================
+
+  const [toggleDropdown, setToggleDropdown] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setToggleDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // ===========================
+
+  const [navBar, setNavBar] = useState("bg-transparent");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +54,8 @@ const NavBar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  // ===========================
 
   return (
     <>
@@ -60,7 +82,10 @@ const NavBar = () => {
             {/* user */}
             {user?.user ? (
               <>
-                <div className="relative font-[sans-serif] w-max mx-auto">
+                <div
+                  ref={dropdownRef}
+                  className="relative font-[sans-serif] w-max mx-auto"
+                >
                   <button
                     onClick={() => setToggleDropdown(!toggleDropdown)}
                     type="button"
@@ -93,10 +118,7 @@ const NavBar = () => {
                     } right-0 shadow-lg bg-white py-2 z-[1000] min-w-full w-max rounded-lg max-h-96 overflow-auto dark:bg-gray-800`}
                   >
                     {/* Email */}
-                    <Link
-                      to="/user/profile"
-                      className="py-2.5 px-5 flex items-center text-[#333] dark:text-gray-200 text-sm cursor-pointer"
-                    >
+                    <Link className="py-2.5 px-5 flex items-center text-[#333] dark:text-gray-200 text-sm cursor-pointer">
                       {user.user.email}
                     </Link>
 
@@ -109,17 +131,7 @@ const NavBar = () => {
                           to="/user/profile"
                           className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
                         >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor"
-                            className="w-4 h-4 mr-3"
-                            viewBox="0 0 512 512"
-                          >
-                            <path
-                              d="M337.711 241.3a16 16 0 0 0-11.461 3.988c-18.739 16.561-43.688 25.682-70.25 25.682s-51.511-9.121-70.25-25.683a16.007 16.007 0 0 0-11.461-3.988c-78.926 4.274-140.752 63.672-140.752 135.224v107.152C33.537 499.293 46.9 512 63.332 512h385.336c16.429 0 29.8-12.707 29.8-28.325V376.523c-.005-71.552-61.831-130.95-140.757-135.223zM446.463 480H65.537V376.523c0-52.739 45.359-96.888 104.351-102.8C193.75 292.63 224.055 302.97 256 302.97s62.25-10.34 86.112-29.245c58.992 5.91 104.351 50.059 104.351 102.8zM256 234.375a117.188 117.188 0 1 0-117.188-117.187A117.32 117.32 0 0 0 256 234.375zM256 32a85.188 85.188 0 1 1-85.188 85.188A85.284 85.284 0 0 1 256 32z"
-                              data-original="#000000"
-                            ></path>
-                          </svg>
+                          <i className="bi bi-person text-lg mr-3"></i>
                           View profile
                         </Link>
 
@@ -128,18 +140,17 @@ const NavBar = () => {
                           to="/user/dashboard"
                           className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
                         >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor"
-                            className="w-4 h-4 mr-3"
-                            viewBox="0 0 512 512"
-                          >
-                            <path
-                              d="M197.332 170.668h-160C16.746 170.668 0 153.922 0 133.332v-96C0 16.746 16.746 0 37.332 0h160c20.59 0 37.336 16.746 37.336 37.332v96c0 20.59-16.746 37.336-37.336 37.336zM37.332 32A5.336 5.336 0 0 0 32 37.332v96a5.337 5.337 0 0 0 5.332 5.336h160a5.338 5.338 0 0 0 5.336-5.336v-96A5.337 5.337 0 0 0 197.332 32zm160 480h-160C16.746 512 0 495.254 0 474.668v-224c0-20.59 16.746-37.336 37.332-37.336h160c20.59 0 37.336 16.746 37.336 37.336v224c0 20.586-16.746 37.332-37.336 37.332zm-160-266.668A5.337 5.337 0 0 0 32 250.668v224A5.336 5.336 0 0 0 37.332 480h160a5.337 5.337 0 0 0 5.336-5.332v-224a5.338 5.338 0 0 0-5.336-5.336zM474.668 512h-160c-20.59 0-37.336-16.746-37.336-37.332v-96c0-20.59 16.746-37.336 37.336-37.336h160c20.586 0 37.332 16.746 37.332 37.336v96C512 495.254 495.254 512 474.668 512zm-160-138.668a5.338 5.338 0 0 0-5.336 5.336v96a5.337 5.337 0 0 0 5.336 5.332h160a5.336 5.336 0 0 0 5.332-5.332v-96a5.337 5.337 0 0 0-5.332-5.336zm160-74.664h-160c-20.59 0-37.336-16.746-37.336-37.336v-224C277.332 16.746 294.078 0 314.668 0h160C495.254 0 512 16.746 512 37.332v224c0 20.59-16.746 37.336-37.332 37.336zM314.668 32a5.337 5.337 0 0 0-5.336 5.332v224a5.338 5.338 0 0 0 5.336 5.336h160a5.337 5.337 0 0 0 5.332-5.336v-224A5.336 5.336 0 0 0 474.668 32zm0 0"
-                              data-original="#000000"
-                            ></path>
-                          </svg>
+                          <i class="bi bi-bar-chart text-lg mr-3"></i>
                           Dashboard
+                        </Link>
+
+                        {/* Business Cards */}
+                        <Link
+                          to="/user/b-card"
+                          className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
+                        >
+                          <i class="bi bi-person-vcard text-lg mr-3"></i>
+                          Business Cards
                         </Link>
                       </>
                     )}
@@ -150,25 +161,9 @@ const NavBar = () => {
                       className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
                     >
                       {theme === "dark" ? (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          className="bi bi-brightness-high w-4 h-4 mr-3"
-                        >
-                          <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708" />
-                        </svg>
+                        <i class="bi bi-sun text-lg mr-3"></i>
                       ) : (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          className="bi bi-moon w-4 h-4 mr-3"
-                        >
-                          <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286" />
-                        </svg>
+                        <i class="bi bi-moon text-lg mr-3"></i>
                       )}
                       <span>{theme === "dark" ? "Light" : "Dark"} mode</span>
                     </Link>
@@ -180,17 +175,7 @@ const NavBar = () => {
                       to="/auth/logout"
                       className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        className="w-4 h-4 mr-3"
-                        viewBox="0 0 6.35 6.35"
-                      >
-                        <path
-                          d="M3.172.53a.265.266 0 0 0-.262.268v2.127a.265.266 0 0 0 .53 0V.798A.265.266 0 0 0 3.172.53zm1.544.532a.265.266 0 0 0-.026 0 .265.266 0 0 0-.147.47c.459.391.749.973.749 1.626 0 1.18-.944 2.131-2.116 2.131A2.12 2.12 0 0 1 1.06 3.16c0-.65.286-1.228.74-1.62a.265.266 0 1 0-.344-.404A2.667 2.667 0 0 0 .53 3.158a2.66 2.66 0 0 0 2.647 2.663 2.657 2.657 0 0 0 2.645-2.663c0-.812-.363-1.542-.936-2.03a.265.266 0 0 0-.17-.066z"
-                          data-original="#000000"
-                        ></path>
-                      </svg>
+                      <i className="bi bi-box-arrow-right text-lg mr-3"></i>
                       Logout
                     </Link>
                   </ul>

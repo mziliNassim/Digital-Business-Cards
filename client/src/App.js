@@ -38,6 +38,7 @@ import Additional from "./components/additional/Additional.jsx";
 import VerifyEmail from "./components/auth/VerifyEmail.jsx";
 import ForgotPassword from "./components/auth/ForgotPassword.jsx";
 import ResetPassword from "./components/auth/ResetPassword.jsx";
+import BCard from "./components/user/BCard.jsx";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -84,6 +85,7 @@ const App = () => {
                 <Route path="/user">
                   <Route path="dashboard" element={<Dashboard />} />
                   <Route path="profile" element={<Profile />} />
+                  <Route path="b-cards" element={<BCard />} />
                   <Route path="*" element={<NotFound />} />
                 </Route>
 

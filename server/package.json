@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon netlify/functions/app.js",
     "dev": "netlify dev",
     "build": "netlify deploy",
     "deploy": "netlify deploy --prod"

@@ -2,7 +2,8 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
-const AUTH_API = "http://localhost:3001/api/auth";
+const AUTH_API = "http://localhost:5000/api/auth";
+// const AUTH_API = "https://digital-business-cards-app.netlify.app/api/auth";
 
 const defaultResponse = {
   user: null,
