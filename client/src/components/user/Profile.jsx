@@ -58,7 +58,7 @@ const Profile = () => {
                   </p>
                 </div>
                 {/* "infos" */}
-                <div className="bg-white dark:bg-gray-800 overflow-hidden">
+                <div className="bg-white dark:bg-gray-900 overflow-hidden">
                   <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-5 sm:p-0">
                     <dl className="sm:divide-y sm:divide-gray-200 dark:divide-gray-700">
                       <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -97,7 +97,7 @@ const Profile = () => {
                   </p>
                 </div>
                 {/* "infos" */}
-                <div className="bg-white dark:bg-gray-800 overflow-hidden">
+                <div className="bg-white dark:bg-gray-900 overflow-hidden">
                   <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-5 sm:p-0">
                     <dl className="sm:divide-y sm:divide-gray-200 dark:divide-gray-700">
                       <div className="py-3 sm:py-5 sm:grid sm:grid-cols-6 sm:gap-4 sm:px-6 items-center">
@@ -106,9 +106,9 @@ const Profile = () => {
                         </dt>
                         <dd className="relative w-full mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-5">
                           <input
-                            type="text"
+                            type="password"
                             id="floating_filled"
-                            class="block rounded-t-lg px-5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            class="block rounded-lg px-5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-800 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" "
                           />
                           <label
@@ -126,9 +126,9 @@ const Profile = () => {
                         </dt>
                         <dd className="relative w-full mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-5">
                           <input
-                            type="text"
+                            type="password"
                             id="floating_filled"
-                            class="block rounded-t-lg px-5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            class="block rounded-lg px-5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-800 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" "
                           />
                           <label
@@ -146,9 +146,9 @@ const Profile = () => {
                         </dt>
                         <dd className="relative w-full mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-5">
                           <input
-                            type="text"
+                            type="password"
                             id="floating_filled"
-                            class="block rounded-t-lg px-5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            class="block rounded-lg px-5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-800 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" "
                           />
                           <label
@@ -158,6 +158,15 @@ const Profile = () => {
                             Confirm Password
                           </label>
                         </dd>
+                      </div>
+
+                      <div className="py-3 sm:py-5  sm:px-6 flex items-center justify-end">
+                        <button
+                          type="button"
+                          class="text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:text-gray-950 dark:bg-gray-300 dark:hover:bg-gray-200 dark:focus:ring-gray-700 dark:border-gray-700"
+                        >
+                          Save Changes
+                        </button>
                       </div>
                     </dl>
                   </div>
