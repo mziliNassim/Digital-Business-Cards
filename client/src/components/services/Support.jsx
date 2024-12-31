@@ -8,7 +8,9 @@ const Support = () => {
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([{ id: 1, message: "message 1" }]);
+  const [messages, setMessages] = useState([
+    { id: 1, message: "test message 1" },
+  ]);
 
   const handleSend = (e) => {
     e.preventDefault();
