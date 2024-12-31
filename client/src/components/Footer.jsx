@@ -207,7 +207,7 @@ const Footer = () => {
           </div>
 
           {/* Platforms */}
-          <div className="max-lg:min-w-[140px]">
+          {/* <div className="max-lg:min-w-[140px]">
             <h4 className="text-[#f35a57] font-semibold text-base relative max-sm:cursor-pointer">
               Platforms
             </h4>
@@ -245,7 +245,7 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Company */}
           <div className="max-lg:min-w-[140px]">
@@ -256,7 +256,7 @@ const Footer = () => {
             <ul className="space-y-4 mt-6">
               <li>
                 <Link
-                  to="/company/test"
+                  to="/company/about-us"
                   className="hover:text-gray-800 text-gray-600 dark:text-gray-300 text-sm"
                 >
                   About us
@@ -264,8 +264,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/company/test"
-                  href="javascript:void(0)"
+                  to="/company/careers"
                   className="hover:text-gray-800 text-gray-600 dark:text-gray-300 text-sm"
                 >
                   Careers
@@ -273,7 +272,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/company/test"
+                  to="/company/blog"
                   className="hover:text-gray-800 text-gray-600 dark:text-gray-300 text-sm"
                 >
                   Blog
@@ -281,15 +280,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/company/test"
-                  className="hover:text-gray-800 text-gray-600 dark:text-gray-300 text-sm"
-                >
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/company/test"
+                  to="/company/events"
                   className="hover:text-gray-800 text-gray-600 dark:text-gray-300 text-sm"
                 >
                   Events
@@ -307,7 +298,7 @@ const Footer = () => {
             <ul className="space-y-4 mt-6">
               <li>
                 <Link
-                  to="/additional/test"
+                  to="/additional/faq"
                   className="hover:text-gray-800 text-gray-600 dark:text-gray-300 text-sm"
                 >
                   FAQ
@@ -315,7 +306,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/additional/test"
+                  to="/additional/partners"
                   className="hover:text-gray-800 text-gray-600 dark:text-gray-300 text-sm"
                 >
                   Partners
@@ -323,15 +314,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/additional/test"
-                  className="hover:text-gray-800 text-gray-600 dark:text-gray-300 text-sm"
-                >
-                  Sitemap
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/additional/test"
+                  to="/additional/contact"
                   className="hover:text-gray-800 text-gray-600 dark:text-gray-300 text-sm"
                 >
                   Contact
@@ -339,7 +322,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/additional/test"
+                  to="/additional/news"
                   className="hover:text-gray-800 text-gray-600  dark:text-gray-300 text-sm"
                 >
                   News

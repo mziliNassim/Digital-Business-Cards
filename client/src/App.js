@@ -8,7 +8,6 @@ import { setUser } from "./features/userSlice.js";
 import { getStoredTheme } from "./features/themeSlice.js";
 
 import Home from "./components/home/Home.jsx";
-
 import NavBar from "./components/NavBar.jsx";
 import Footer from "./components/Footer.jsx";
 import NotFound from "./components/NotFound.jsx";
@@ -22,6 +21,9 @@ import Support from "./components/services/Support.jsx";
 import Login from "./components/auth/Login.jsx";
 import Logout from "./components/auth/Logout.jsx";
 import Register from "./components/auth/Register.jsx";
+import VerifyEmail from "./components/auth/VerifyEmail.jsx";
+import ForgotPassword from "./components/auth/ForgotPassword.jsx";
+import ResetPassword from "./components/auth/ResetPassword.jsx";
 
 import Terms from "./components/ours/Terms.jsx";
 import PrivacyPolicy from "./components/ours/PrivacyPolicy.jsx";
@@ -29,16 +31,21 @@ import Security from "./components/ours/Security.jsx";
 
 import Profile from "./components/user/Profile.jsx";
 import Dashboard from "./components/user/Dashboard.jsx";
+import BCard from "./components/user/BCard.jsx";
 
 import Platforms from "./components/platforms/Platforms.jsx";
 
-import Company from "./components/company/Company.jsx";
+import AboutUS from "./components/company/AboutUS.jsx";
+import Careers from "./components/company/Careers.jsx";
+import Blog from "./components/company/Blog.jsx";
+import Events from "./components/company/Events.jsx";
 
-import Additional from "./components/additional/Additional.jsx";
-import VerifyEmail from "./components/auth/VerifyEmail.jsx";
-import ForgotPassword from "./components/auth/ForgotPassword.jsx";
-import ResetPassword from "./components/auth/ResetPassword.jsx";
-import BCard from "./components/user/BCard.jsx";
+import Partners from "./components/additional/Partners.jsx";
+import FAQ from "./components/additional/FAQ.jsx";
+import Contact from "./components/additional/Contact.jsx";
+import News from "./components/additional/News.jsx";
+
+import Test from "./components/Test";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -115,12 +122,18 @@ const App = () => {
                 </Route>
 
                 <Route path="/company">
-                  <Route path=":test" element={<Company />} />
+                  <Route path="about-us" element={<AboutUS />} />
+                  <Route path="careers" element={<Careers />} />
+                  <Route path="blog" element={<Blog />} />
+                  <Route path="events" element={<Events />} />
                   <Route path="*" element={<NotFound />} />
                 </Route>
 
                 <Route path="/additional">
-                  <Route path=":test" element={<Additional />} />
+                  <Route path="faq" element={<FAQ />} />
+                  <Route path="partners" element={<Partners />} />
+                  <Route path="contact" element={<Contact />} />
+                  <Route path="news" element={<News />} />
                   <Route path="*" element={<NotFound />} />
                 </Route>
 
@@ -131,10 +144,11 @@ const App = () => {
                     path="businesses-teams"
                     element={<BusinessesTeams />}
                   />
-                  <Route
+                  {/* <Route
                     path="digital-business-cards"
                     element={<DigitalBusinessCards />}
-                  />
+                  /> */}
+                  <Route path="digital-business-cards" element={<Test />} />
                   <Route path="*" element={<NotFound />} />
                 </Route>
 

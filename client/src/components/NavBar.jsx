@@ -18,6 +18,7 @@ const NavBar = () => {
 
   // ===========================
 
+  const [menuDropdown, setMenuDropdown] = useState(true);
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -207,6 +208,7 @@ const NavBar = () => {
 
             {/* toggle btn */}
             <button
+              onClick={() => setMenuDropdown(!menuDropdown)}
               data-collapse-toggle="navbar-user"
               type="button"
               className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -234,7 +236,9 @@ const NavBar = () => {
 
           {/* Nav links */}
           <div
-            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+            className={`${
+              menuDropdown ? "block" : "hidden"
+            } items-center justify-between w-full md:flex md:w-auto md:order-1`}
             id="navbar-user"
           >
             <ul className="navLinks flex flex-col font-medium p-4 md:p-0 mt-4 bg-gray-100 dark:bg-gray-800 dark:md:bg-transparent md:bg-transparent rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 text-white ">
