@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Aside from "./Aside";
 
+import heroTest from "../../img/home/hero.png";
+import { Link } from "react-router-dom";
+
 const BCards = () => {
   const [view, setView] = useState("grid");
   const [sortBy, setSortBy] = useState("recent");
@@ -14,7 +17,7 @@ const BCards = () => {
       views: 1234,
       lastModified: "2024-03-15",
       status: "active",
-      thumbnail: "/api/placeholder/300/200",
+      thumbnail: heroTest,
     },
     {
       id: 2,
@@ -23,7 +26,7 @@ const BCards = () => {
       views: 856,
       lastModified: "2024-03-10",
       status: "active",
-      thumbnail: "/api/placeholder/300/200",
+      thumbnail: heroTest,
     },
     {
       id: 3,
@@ -32,7 +35,7 @@ const BCards = () => {
       views: 567,
       lastModified: "2024-03-05",
       status: "draft",
-      thumbnail: "/api/placeholder/300/200",
+      thumbnail: heroTest,
     },
     {
       id: 4,
@@ -41,7 +44,7 @@ const BCards = () => {
       views: 989,
       lastModified: "2024-03-01",
       status: "active",
-      thumbnail: "/api/placeholder/300/200",
+      thumbnail: heroTest,
     },
   ];
 
@@ -55,8 +58,8 @@ const BCards = () => {
             <Aside />
 
             {/* Main Content */}
-            <main className="flex-1 p-6">
-              <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+            <main className="flex-1 p-2 md:p-6">
+              <div className="min-h-screen bg-white dark:bg-gray-900 py-8">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
                   <div>
@@ -67,10 +70,13 @@ const BCards = () => {
                       Manage and organize your digital business cards
                     </p>
                   </div>
-                  <button className="mt-4 md:mt-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center">
+                  <Link
+                    to="/user/add-card"
+                    className="mt-4 md:mt-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center"
+                  >
                     <i className="bi bi-plus-lg mr-2"></i>
                     Create New Card
-                  </button>
+                  </Link>
                 </div>
 
                 {/* Filters and Controls */}

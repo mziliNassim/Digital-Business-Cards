@@ -123,7 +123,7 @@ const Login = () => {
                 {alert.message !== "" && (
                   <div
                     id="alert-1"
-                    class={`flex items-center justify-between p-4 mb-4  rounded-lg ${
+                    className={`flex items-center justify-between p-4 mb-4  rounded-lg ${
                       alert.state === "success"
                         ? "text-green-800 dark:text-green-400 bg-green-50 "
                         : alert.state === "warning"
@@ -151,7 +151,7 @@ const Login = () => {
                     <button
                       onClick={() => setAlert({ message: "", state: "" })}
                       type="button"
-                      class={`ms-auto transition-all rounded-lg focus:ring-2 dark:bg-gray-800 dark:hover:bg-gray-700  p-1.5 inline-flex items-center justify-center h-8 w-8 ${
+                      className={`ms-auto transition-all rounded-lg focus:ring-2 dark:bg-gray-800 dark:hover:bg-gray-700  p-1.5 inline-flex items-center justify-center h-8 w-8 ${
                         alert.state === "success"
                           ? "focus:ring-green-400 dark:text-green-400 bg-green-100 text-green-500"
                           : alert.state === "warning"
@@ -171,9 +171,9 @@ const Login = () => {
                       >
                         <path
                           stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
                           d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
                         />
                       </svg>

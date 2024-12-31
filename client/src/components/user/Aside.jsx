@@ -5,12 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { storeTheme, toggleTheme } from "../../features/themeSlice";
 
 const Aside = () => {
-  const [active, setActive] = useState("profile");
   const location = useLocation(true);
-
-  useEffect(() => {
-    console.log("Aside ~ location:", location.pathname);
-  }, [location]);
 
   // ==============
 
@@ -67,7 +62,7 @@ const Aside = () => {
                     }
                   `}
             >
-              <i class="bi bi-boxes"></i>
+              <i className="bi bi-boxes"></i>
               <span>My Business Cards</span>
             </Link>
 

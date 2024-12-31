@@ -37,8 +37,8 @@ const CreateCard = () => {
             <Aside />
 
             {/* Main Content */}
-            <main className="flex-1 p-6">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <main className="flex-1 p-2 md:p-6">
+              <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
                   <div>

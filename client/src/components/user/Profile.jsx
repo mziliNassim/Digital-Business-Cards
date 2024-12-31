@@ -14,7 +14,7 @@ const Profile = () => {
             <Aside />
 
             {/* Main Content */}
-            <main className="flex-1 px-6">
+            <main className="flex-1 p-2 md:p-6">
               {/* Profile Header */}
               <div className="flex flex-col mb-5 overflow-hidden rounded-lg shadow-lg bg-white dark:bg-gray-800 dark:text-gray-100">
                 <div
