@@ -37,10 +37,10 @@ const Profile = () => {
 
                 <div className="grow p-5 text-center">
                   <h3 className="mb-1 mt-3 text-lg font-semibold">
-                    {user.username}
+                    {user?.username}
                   </h3>
                   <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    {user.email} ∙ 0 card
+                    {user?.email} ∙ 0 card
                   </p>
                 </div>
               </div>
@@ -66,8 +66,8 @@ const Profile = () => {
                           username
                         </dt>
                         <dd className="relative w-fit mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2">
-                          {user.username}
-                          <i class="bi bi-pencil-square absolute -top-1 -right-3 text-gray-400 dark:text-gray-600 cursor-pointer text-xs"></i>
+                          {user?.username}
+                          <i className="bi bi-pencil-square absolute -top-1 -right-3 text-gray-400 dark:text-gray-600 cursor-pointer text-xs"></i>
                         </dd>
                       </div>
 
@@ -76,7 +76,7 @@ const Profile = () => {
                           Email
                         </dt>
                         <dd className="w-fit mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2">
-                          {user.email}
+                          {user?.email}
                         </dd>
                       </div>
                     </dl>
@@ -108,12 +108,12 @@ const Profile = () => {
                           <input
                             type="password"
                             id="floating_filled"
-                            class="block rounded-lg px-5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-800 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            className="block rounded-lg px-5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-800 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" "
                           />
                           <label
-                            for="floating_filled"
-                            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+                            htmlFor="floating_filled"
+                            className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
                           >
                             Password
                           </label>
@@ -128,12 +128,12 @@ const Profile = () => {
                           <input
                             type="password"
                             id="floating_filled"
-                            class="block rounded-lg px-5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-800 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            className="block rounded-lg px-5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-800 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" "
                           />
                           <label
-                            for="floating_filled"
-                            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+                            htmlFor="floating_filled"
+                            className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
                           >
                             New Password
                           </label>
@@ -148,12 +148,12 @@ const Profile = () => {
                           <input
                             type="password"
                             id="floating_filled"
-                            class="block rounded-lg px-5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-800 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            className="block rounded-lg px-5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-800 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" "
                           />
                           <label
-                            for="floating_filled"
-                            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+                            htmlFor="floating_filled"
+                            className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
                           >
                             Confirm Password
                           </label>
@@ -163,7 +163,7 @@ const Profile = () => {
                       <div className="py-3 sm:py-5  sm:px-6 flex items-center justify-end">
                         <button
                           type="button"
-                          class="text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:text-gray-950 dark:bg-gray-300 dark:hover:bg-gray-200 dark:focus:ring-gray-700 dark:border-gray-700"
+                          className="text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:text-gray-950 dark:bg-gray-300 dark:hover:bg-gray-200 dark:focus:ring-gray-700 dark:border-gray-700"
                         >
                           Save Changes
                         </button>

@@ -79,9 +79,9 @@ const Aside = () => {
               className={`flex items-center space-x-3 p-2 rounded-md dark:hover:bg-gray-700 hover:bg-gray-200`}
             >
               {theme === "dark" ? (
-                <i class="bi bi-sun text-lg"></i>
+                <i className="bi bi-sun text-lg"></i>
               ) : (
-                <i class="bi bi-moon text-lg"></i>
+                <i className="bi bi-moon text-lg"></i>
               )}
               <span>{theme === "dark" ? "Light" : "Dark"} mode</span>
             </Link>

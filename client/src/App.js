@@ -75,6 +75,11 @@ const App = () => {
     if (user.user) {
       !user.user.isVerified && navigate("/auth/verify-email");
     }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, [user, location]);
 
   return (
@@ -86,6 +91,7 @@ const App = () => {
           ) : (
             <>
               <NavBar />
+              <Support />
               <Routes>
                 <Route path="/" element={<Home />} />
 
@@ -139,16 +145,14 @@ const App = () => {
 
                 <Route path="/services">
                   <Route path="pricing" element={<Pricing />} />
-                  <Route path="support" element={<Support />} />
                   <Route
                     path="businesses-teams"
                     element={<BusinessesTeams />}
                   />
-                  {/* <Route
+                  <Route
                     path="digital-business-cards"
                     element={<DigitalBusinessCards />}
-                  /> */}
-                  <Route path="digital-business-cards" element={<Test />} />
+                  />
                   <Route path="*" element={<NotFound />} />
                 </Route>
 

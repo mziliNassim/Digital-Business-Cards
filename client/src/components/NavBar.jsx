@@ -18,7 +18,7 @@ const NavBar = () => {
 
   // ===========================
 
-  const [menuDropdown, setMenuDropdown] = useState(true);
+  const [menuDropdown, setMenuDropdown] = useState(false);
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -141,16 +141,16 @@ const NavBar = () => {
                           to="/user/dashboard"
                           className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
                         >
-                          <i class="bi bi-bar-chart text-lg mr-3"></i>
+                          <i className="bi bi-bar-chart text-lg mr-3"></i>
                           Dashboard
                         </Link>
 
                         {/* Business Cards */}
                         <Link
-                          to="/user/b-card"
+                          to="/user/b-cards"
                           className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
                         >
-                          <i class="bi bi-person-vcard text-lg mr-3"></i>
+                          <i className="bi bi-person-vcard text-lg mr-3"></i>
                           Business Cards
                         </Link>
                       </>
@@ -162,9 +162,9 @@ const NavBar = () => {
                       className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
                     >
                       {theme === "dark" ? (
-                        <i class="bi bi-sun text-lg mr-3"></i>
+                        <i className="bi bi-sun text-lg mr-3"></i>
                       ) : (
-                        <i class="bi bi-moon text-lg mr-3"></i>
+                        <i className="bi bi-moon text-lg mr-3"></i>
                       )}
                       <span>{theme === "dark" ? "Light" : "Dark"} mode</span>
                     </Link>
