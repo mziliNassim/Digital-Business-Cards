@@ -70,10 +70,10 @@ const NavBar = () => {
           {/* app logo */}
           <Link
             to="/"
-            className="flex items-center space-x-1 rtl:space-x-reverse"
+            className="flex text-[#f35a57] items-center space-x-1 rtl:space-x-reverse"
           >
             <img src={appLogo} className="h-10" alt="Flowbite Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-gray-900 dark:text-gray-100 ">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap ">
               Flowbite
             </span>
           </Link>
@@ -150,8 +150,16 @@ const NavBar = () => {
                           to="/user/b-cards"
                           className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
                         >
-                          <i className="bi bi-person-vcard text-lg mr-3"></i>
-                          Business Cards
+                          <i className="bi bi-boxes text-lg mr-3"></i>
+                          My Business Cards
+                        </Link>
+
+                        <Link
+                          to="/user/add-card"
+                          className="py-2.5 px-5 flex items-center hover:bg-gray-100 dark:hover:bg-gray-900 text-[#333] dark:text-gray-200 text-sm cursor-pointer"
+                        >
+                          <i className="bi bi-credit-card text-lg mr-3"></i>
+                          Create Business Card
                         </Link>
                       </>
                     )}

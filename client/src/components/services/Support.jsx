@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 const Support = () => {
   const { user } = useSelector((state) => state.user);
-
+  const supportBoxRef = useRef();
   const [supportBoxHid, setSupportBoxHid] = useState(true);
-
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([
-    { id: 1, message: "test message 1" },
+    { id: 1, message: "test message 1 " },
   ]);
+
+  const handleClickOutside = (event) => {
+    if (supportBoxRef.current && !supportBoxRef.current.contains(event.target))
+      setSupportBoxHid(true);
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleSend = (e) => {
     e.preventDefault();
@@ -23,12 +34,12 @@ const Support = () => {
   };
 
   return (
-    <>
+    <div ref={supportBoxRef}>
       <div
         onClick={() => setSupportBoxHid(!supportBoxHid)}
         className="fixed right-5 bottom-5 z-50"
       >
-        <i className="bi bi-question-circle text-4xl transition-all text-gray-400 dark:text-gray-600 hover:text-gray-700 dark:hover:text-gray-300 cursor-pointer"></i>
+        <i className="bi bi-headset text-4xl transition-all text-gray-400 dark:text-gray-600 hover:text-gray-700 dark:hover:text-gray-300 cursor-pointer"></i>
       </div>
 
       <div
@@ -42,9 +53,9 @@ const Support = () => {
             <button
               id="close-chat"
               onClick={() => setSupportBoxHid(true)}
-              className="text-gray-300 hover:text-gray-400 focus:outline-none focus:text-gray-400"
+              className="text-gray-300 hover:text-gray-400 focus:outline-none focus:text-gray-400 bg-[#f35A]"
             >
-              <i className="bi bi-x-lg text-xl font-bold text-white"></i>
+              <i className="bi bi-x-lg text-lg font-bold text-white border rounded border-gray-300 px-2 py-1"></i>
             </button>
           </div>
 
@@ -61,10 +72,14 @@ const Support = () => {
             {messages?.map((msg, i) => {
               return (
                 <div key={i}>
-                  <div className="mb-2 text-right w-full flex justify-end">
+                  <div className="mb-2 text-right w-full flex gap-2 justify-end">
                     <p className="bg-blue-500 text-md max-w-[85%] w-fit text-white rounded-lg py-2 px-4">
                       {msg.message}
                     </p>
+                    <img
+                      src="https://readymadeui.com/profile_6.webp"
+                      className="w-7 h-7 rounded-full shrink-0"
+                    ></img>
                   </div>
 
                   <div className="mb-2 text-left text-md w-full">
@@ -80,27 +95,28 @@ const Support = () => {
             })}
           </div>
 
-          <div className="p-4 border-t flex">
+          <form onSubmit={handleSend} className="p-4 border-t flex">
             <input
               id="user-input"
               type="text"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Type a message"
-              className="w-full px-3 py-2 border rounded-l-md focus:outline-none bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-[#f35a57]"
+              className="w-full px-3 py-2 border rounded-l-md focus:outline-none bg-gray-100 dark:bg-gray-700 "
             />
             <button
               id="send-button"
               disabled={loading}
               onClick={handleSend}
               className="bg-[#f35a57] text-white px-4 py-2 rounded-r-md hover:bg-[#f35a57] transition duration-300"
+              style={{ background: message === "" && "#ccc" }}
             >
               Send
             </button>
-          </div>
+          </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -39,7 +39,7 @@ const Aside = () => {
                     }
                   `}
             >
-              <i className="bi bi-person-fill"></i>
+              <i className="bi bi-person"></i>
               <span>Profile</span>
             </Link>
 
@@ -53,7 +53,7 @@ const Aside = () => {
                     }
                   `}
             >
-              <i className="bi bi-bar-chart-fill"></i>
+              <i className="bi bi-bar-chart"></i>
               <span>Dashboard</span>
             </Link>
 
@@ -67,8 +67,22 @@ const Aside = () => {
                     }
                   `}
             >
-              <i className="bi bi-credit-card-fill"></i>
+              <i class="bi bi-boxes"></i>
               <span>My Business Cards</span>
+            </Link>
+
+            {/* Add Business Cards */}
+            <Link
+              to="/user/add-card"
+              className={`flex items-center space-x-3 hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded-md
+                    ${
+                      location.pathname == "/user/add-card" &&
+                      "dark:bg-gray-700 bg-gray-200"
+                    }
+                  `}
+            >
+              <i className="bi bi-credit-card"></i>
+              <span>Create Business Card</span>
             </Link>
           </div>
 

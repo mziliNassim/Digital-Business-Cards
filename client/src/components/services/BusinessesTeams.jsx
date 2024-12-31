@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 
 const BusinessesTeams = () => {
@@ -51,17 +52,32 @@ const BusinessesTeams = () => {
       <div className="flex flex-col items-center justify-center max-w-screen-xl w-full px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <motion.h1
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="text-4xl font-bold text-[#f35a57] mb-4"
+          >
             Digital Business Cards for Teams
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl"
+          >
             Empower your team with professional digital business cards that
             maintain brand consistency
-          </p>
+          </motion.p>
         </div>
 
         {/* Tabs */}
-        <div className="flex justify-center mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.75 }}
+          className="flex justify-center mb-8"
+        >
           <div className="flex space-x-4 p-1 bg-gray-100 dark:bg-gray-800 rounded-xl">
             {["features", "testimonials"].map((tab) => (
               <button
@@ -69,7 +85,7 @@ const BusinessesTeams = () => {
                 onClick={() => setActiveTab(tab)}
                 className={`px-6 py-2 rounded-lg ${
                   activeTab === tab
-                    ? "bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm"
+                    ? "bg-white dark:bg-gray-700 text-[#f35a57] shadow-sm"
                     : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 } capitalize transition-colors duration-150`}
               >
@@ -77,19 +93,22 @@ const BusinessesTeams = () => {
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Content */}
         <div className="mt-12">
           {activeTab === "features" ? (
             <div className="grid grid-cols-1 md:grid-cols-2  gap-8">
               {features.map((feature, index) => (
-                <div
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1 + 0.2 * index }}
                   key={index}
                   className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
                 >
                   <i
-                    className={`${feature.icon} text-3xl text-blue-600 dark:text-blue-400 mb-4`}
+                    className={`${feature.icon} text-3xl text-[#f35a57] mb-4`}
                   ></i>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                     {feature.title}
@@ -97,14 +116,17 @@ const BusinessesTeams = () => {
                   <p className="text-gray-600 dark:text-gray-300">
                     {feature.description}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {testimonials.map((testimonial, index) => (
-                <div
+                <motion.div
                   key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1 + 0.2 * index }}
                   className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg"
                 >
                   <div className="flex items-center mb-4">
@@ -125,21 +147,26 @@ const BusinessesTeams = () => {
                   <p className="text-gray-600 dark:text-gray-300 italic">
                     "{testimonial.content}"
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
           )}
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.75 }}
+          className="mt-16 text-center"
+        >
           <Link
             to="/services/pricing"
-            className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold shadow-lg transition-colors duration-200"
+            className="px-8 py-3 bg-[#f35a57]  hover:bg-[#f35a] text-white rounded-xl font-semibold shadow-lg transition-colors duration-200"
           >
             Start Your Team Trial
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -195,14 +195,6 @@ const Footer = () => {
                   Digital Business Cards for Teams
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/services/support"
-                  className="hover:text-gray-800 text-gray-600 dark:text-gray-300 text-sm"
-                >
-                  Support
-                </Link>
-              </li>
             </ul>
           </div>
 

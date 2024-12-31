@@ -31,7 +31,8 @@ import Security from "./components/ours/Security.jsx";
 
 import Profile from "./components/user/Profile.jsx";
 import Dashboard from "./components/user/Dashboard.jsx";
-import BCard from "./components/user/BCard.jsx";
+import CreateCard from "./components/user/CreateCard.jsx";
+import BCards from "./components/user/BCards.jsx";
 
 import Platforms from "./components/platforms/Platforms.jsx";
 
@@ -94,11 +95,13 @@ const App = () => {
               <Support />
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/test" element={<BCards />} />
 
                 <Route path="/user">
                   <Route path="dashboard" element={<Dashboard />} />
                   <Route path="profile" element={<Profile />} />
-                  <Route path="b-cards" element={<BCard />} />
+                  <Route path="b-cards" element={<BCards />} />
+                  <Route path="add-card" element={<CreateCard />} />
                   <Route path="*" element={<NotFound />} />
                 </Route>
 
