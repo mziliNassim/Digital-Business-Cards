@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -29,7 +29,7 @@ const Aside = () => {
               to="/user/profile"
               className={`flex items-center space-x-3 p-2 rounded-md dark:hover:bg-gray-700 hover:bg-gray-200
                     ${
-                      location.pathname == "/user/profile" &&
+                      location.pathname === "/user/profile" &&
                       "dark:bg-gray-700 bg-gray-200"
                     }
                   `}
@@ -43,7 +43,7 @@ const Aside = () => {
               to="/user/dashboard"
               className={`flex items-center space-x-3 p-2 rounded-md dark:hover:bg-gray-700 hover:bg-gray-200
                     ${
-                      location.pathname == "/user/dashboard" &&
+                      location.pathname === "/user/dashboard" &&
                       "dark:bg-gray-700 bg-gray-200"
                     }
                   `}
@@ -57,7 +57,7 @@ const Aside = () => {
               to="/user/b-cards"
               className={`flex items-center space-x-3 hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded-md
                     ${
-                      location.pathname == "/user/b-cards" &&
+                      location.pathname === "/user/b-cards" &&
                       "dark:bg-gray-700 bg-gray-200"
                     }
                   `}
@@ -71,7 +71,7 @@ const Aside = () => {
               to="/user/add-card"
               className={`flex items-center space-x-3 hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded-md
                     ${
-                      location.pathname == "/user/add-card" &&
+                      location.pathname === "/user/add-card" &&
                       "dark:bg-gray-700 bg-gray-200"
                     }
                   `}

@@ -1,17 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "motion/react";
 
 const DigitalBusinessCards = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-
   return (
     <section className="bg-white overflow-y-hidden dark:bg-gray-900">
       <div className="flex flex-col lg:gap-8 max-w-screen-xl mx-auto w-full xl:gap-0 pt-20 pb-8 lg:py-16 px-4  lg:pt-28">

@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { motion } from "motion/react";
 import {
   resendVerificationCodeDB,
@@ -13,7 +12,6 @@ const VerifyEmail = () => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const inputRefs = useRef([]);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [resendCode, setResendCode] = useState({
     timing: true,
@@ -55,7 +53,7 @@ const VerifyEmail = () => {
     if (user.user) {
       if (user.user.isVerified) window.location = "/";
     } else window.location = "/auth/login";
-  });
+  }, [user]);
 
   // =================
 
@@ -83,9 +81,11 @@ const VerifyEmail = () => {
 
   // =================
 
-  const verifyEmailUI = async (verificationCode) => {
-    await verifyEmailDB(verificationCode)
-      .then((res) => {
+  const verifyEmailUI = useCallback(
+    async (verificationCode) => {
+      setLoading(true);
+      try {
+        const res = await verifyEmailDB(verificationCode);
         if (res.user) {
           dispatch(setUser(res.user));
           window.location = "/";
@@ -94,27 +94,32 @@ const VerifyEmail = () => {
           message: res.message,
           state: res.state,
         });
-      })
-      .catch((err) => {
+      } catch (err) {
         console.log("verifyEmailUI ~ err:", err);
         setAlert({ message: err.message, state: "danger" });
-      })
-      .finally(() => setLoading(false));
-  };
+      } finally {
+        setLoading(false);
+      }
+    },
+    [dispatch, setAlert] // Add dependencies here
+  );
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    const verificationCode = code.join("");
-    verifyEmailUI(verificationCode);
-  };
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      setLoading(true);
+      const verificationCode = code.join("");
+      verifyEmailUI(verificationCode);
+    },
+    [code, verifyEmailUI]
+  );
 
   // Auto submit when all fields are filled
   useEffect(() => {
     if (code.every((digit) => digit !== "")) {
       handleSubmit(new Event("submit"));
     }
-  }, [code]);
+  }, [code, handleSubmit]);
 
   return (
     <section className="bg-white overflow-y-hidden dark:bg-gray-900">

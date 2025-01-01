@@ -96,6 +96,7 @@ const NavBar = () => {
                     <img
                       src="https://readymadeui.com/profile_6.webp"
                       className="w-7 h-7 mr-3 rounded-full shrink-0"
+                      alt="profile_6"
                     ></img>
                     {user.user.username}
                     <svg

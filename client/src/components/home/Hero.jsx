@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { motion, useInView, useAnimation } from "motion/react";
 
 import hero from "../../img/home/Credit card-pana.svg";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const ref = useRef(null);
@@ -40,8 +41,8 @@ const Hero = () => {
             </p>
 
             <div className=" space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-              <a
-                href="#"
+              <Link
+                to="/services/pricing"
                 className="heroLink inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium text-center  border-2 rounded-lg sm:w-auto hover:bg-gray-100 border-[#f35a57] text-[#f35a57] focus:ring-4 focus:ring-gray-100 dark:border-[#f35a57] dark:hover:bg-gray-700 dark:hover:border-[#f35a57] dark:text-[#f35a57] dark:focus:ring-gray-800"
               >
                 <svg
@@ -60,9 +61,9 @@ const Hero = () => {
                   />
                 </svg>
                 Free trial for 30 days
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/services/pricing"
                 className="heroLink inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium text-center  border-2 rounded-lg sm:w-auto hover:bg-gray-100 border-[#f35a57] text-[#f35a57] focus:ring-4 focus:ring-gray-100 dark:border-[#f35a57] dark:hover:bg-gray-700 dark:hover:border-[#f35a57] dark:text-[#f35a57] dark:focus:ring-gray-800"
               >
                 <svg
@@ -81,7 +82,7 @@ const Hero = () => {
                   />
                 </svg>
                 Digital Business Cards for Teams
-              </a>
+              </Link>
             </div>
           </motion.div>
 
@@ -91,7 +92,7 @@ const Hero = () => {
             transition={{ duration: 0.5 }}
             className="hidden lg:mt-0 lg:col-span-5 lg:flex"
           >
-            <img src={hero} alt="hero image" />
+            <img src={hero} alt="hero" />
           </motion.div>
         </div>
       </section>

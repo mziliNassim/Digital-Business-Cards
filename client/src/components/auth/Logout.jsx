@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 import { clearUser } from "../../features/userSlice";
+import { useDispatch } from "react-redux";
+
 import { logoutAuth } from "../../utils/handleAuthDB";
 
 const Logout = () => {
@@ -15,7 +17,7 @@ const Logout = () => {
         navigate("/");
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [dispatch, navigate]);
 
   return <h1>Logout</h1>;
 };

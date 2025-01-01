@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
 
 const Support = () => {
-  const { user } = useSelector((state) => state.user);
   const supportBoxRef = useRef();
   const [supportBoxHid, setSupportBoxHid] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -79,6 +77,7 @@ const Support = () => {
                     <img
                       src="https://readymadeui.com/profile_6.webp"
                       className="w-7 h-7 rounded-full shrink-0"
+                      alt="profile"
                     ></img>
                   </div>
 

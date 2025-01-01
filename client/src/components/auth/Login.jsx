@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "motion/react";
 
-import Alert from "../Alert.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import authlogin from "../../img/auth/authlogin.svg";
 import { useDispatch, useSelector } from "react-redux";
@@ -265,7 +264,7 @@ const Login = () => {
                     className="w-full shadow-xl py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-[#f35a57] opacity-90 hover:opacity-100 font-semibold hover:[#f35a57] focus:outline-none"
                   >
                     {loading ? (
-                      <div role="state">
+                      <div>
                         <svg
                           aria-hidden="true"
                           className="inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400"

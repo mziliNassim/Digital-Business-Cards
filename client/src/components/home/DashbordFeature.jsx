@@ -42,10 +42,7 @@ const DashbordFeature = () => {
                 hub
               </p>
 
-              <ul
-                role="list"
-                className="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700"
-              >
+              <ul className="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
                 <li className="flex space-x-3">
                   <svg
                     className="flex-shrink-0 w-5 h-5 text-[#f35a57] dark:text-[#f35a57]"

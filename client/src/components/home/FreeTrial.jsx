@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "motion/react";
+import { Link } from "react-router-dom";
 
 const FreeTrial = () => {
   const ref = useRef(null);
@@ -33,12 +34,12 @@ const FreeTrial = () => {
             <p className="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">
               Try Landwind Platform for 30 days. No credit card required.
             </p>
-            <a
-              href="#"
+            <Link
+              to="/services/pricing"
               className="text-white bg-[#f35a57] hover:bg-[#f35a57] focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 opacity-80 hover:opacity-100 dark:bg-[#f35a57] dark:hover:bg-[#f35a57] focus:outline-none dark:focus:ring-[#f35a57]"
             >
               Free trial for 30 days
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>

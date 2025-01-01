@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Aside from "./Aside";
 
 const CreateCard = () => {
-  const [activeTab, setActiveTab] = useState("preview");
   const [theme, setTheme] = useState("modern");
 
   const cardThemes = {

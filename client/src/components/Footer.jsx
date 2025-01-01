@@ -57,7 +57,7 @@ const Footer = () => {
 
             <ul className="mt-10 flex space-x-5">
               <li>
-                <a href="javascript:void(0)">
+                <Link to="/fb">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="fill-blue-600 w-8 h-8"
@@ -68,10 +68,10 @@ const Footer = () => {
                       data-original="#000000"
                     />
                   </svg>
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="javascript:void(0)">
+                <Link to="/ln">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-8 h-8"
@@ -90,10 +90,10 @@ const Footer = () => {
                       data-original="#f1f2f2"
                     />
                   </svg>
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="javascript:void(0)">
+                <Link to="/insta">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-8 h-8"
@@ -140,10 +140,10 @@ const Footer = () => {
                       </g>
                     </g>
                   </svg>
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="javascript:void(0)">
+                <Link to="/twitter">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-8 h-8"
@@ -159,7 +159,7 @@ const Footer = () => {
                       data-original="#ffffff"
                     />
                   </svg>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

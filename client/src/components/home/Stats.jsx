@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "motion/react";
+import { Link } from "react-router-dom";
 
 const Stats = () => {
   const ref = useRef(null);
@@ -15,7 +16,7 @@ const Stats = () => {
       mainControls.start({ opacity: 0, y: 50 });
       subControls.start({ opacity: 0, y: 50, x: 50 });
     }
-  }, [inView, mainControls]);
+  }, [inView, mainControls, subControls]);
 
   return (
     <>
@@ -44,8 +45,8 @@ const Stats = () => {
             </p>
             <div className="pt-6 mt-6 space-y-4 border-t border-gray-200 dark:border-gray-700">
               <div>
-                <a
-                  href="#"
+                <Link
+                  to="/test"
                   className="inline-flex items-center text-base font-medium text-[#f35a57] opacity-75 hover:opacity-100 hover:text-text-[#f35a57] dark:text-text-[#f35a57] dark:hover:text-text-[#f35a57]"
                 >
                   Explore Legality Guide
@@ -61,7 +62,7 @@ const Stats = () => {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>
